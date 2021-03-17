@@ -1,9 +1,9 @@
 
 /**
- * Write a description of FindGeneWhile here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * 
+ * Name: Frank Aboagye
+ *
  */
 
 import edu.duke.*;
