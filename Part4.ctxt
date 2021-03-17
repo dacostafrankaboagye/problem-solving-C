@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Part4
+comment1.params=dna\ startIndex\ stopCodon
+comment1.target=int\ findStopCodon(java.lang.String,\ int,\ java.lang.String)
+comment2.params=dna\ where
+comment2.target=java.lang.String\ findGene(java.lang.String,\ int)
+comment3.params=dna
+comment3.target=void\ printAllGenes(java.lang.String)
+comment3.text=\r\n\ \ \ \ public\ void\ testRes\ ()\ {\r\n\ \ \ \ \ \ \ \ FileResource\ fr\ \=\ new\ FileResource();\r\n\ \ \ \ \ \ \ \ String\ contents\ \=\ fr.asString();\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ System.out.println("\ \ \ \ \ \ \ \ The\ content\ as\ string\ \ \ \ \ \ ");\r\n\ \ \ \ \ \ \ \ System.out.println("___________________________________");\r\n\ \ \ \ \ \ \ \ System.out.println(contents);\r\n\ \ \ \ \ \ \ \ System.out.println("___________________________________");\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ String\ dex\ \=\ findGene(contents.toUpperCase(),\ 0);\r\n\ \ \ \ \ \ \ \ System.out.println(dex);\r\n\r\n\ \ \ \ \ \ \ \ System.out.println("completed\!\!\!");\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ }\r\n
+comment4.params=
+comment4.target=void\ testing()
+numComments=5
