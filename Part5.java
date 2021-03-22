@@ -8,7 +8,7 @@ Gene finding algorithm.
 import edu.duke.*;
 import java.io.*;
 
-public class Part4 {
+public class Part5 {
     
 
     
@@ -42,31 +42,14 @@ public class Part4 {
         int taaIndex = findStopCodon(dna, startIndex, "TAA");
         int tagIndex = findStopCodon(dna, startIndex, "TAG");
         int tgaIndex = findStopCodon(dna, startIndex, "TGA");
-        
-        // store the smallest of these three in minIndex;
-        //int minIndex = Math.min(Math.min(taaIndex, tagIndex), tgaIndex);
-        //if(minIndex == dna.length()){return "";}
-        //else{ return dna.substring(startIndex, minIndex+3);}
-        
-        // but we dont want to return the length, rather, -1: very complex
-        // two cases here;
-        
-        // case 1
-        // if taaIndex ==-1 OR 
-        // if tgaIndex != -1 AND tgaIndex < taaIndex;
-        // the set minIndex = tga
-        //else set minIndex = taaIndex
+
         int minIndex = 0;
        
         if(taaIndex == -1 || (tgaIndex !=-1 && tgaIndex < taaIndex)){
             minIndex = tgaIndex;
         }
         else{minIndex = taaIndex;}
-        
-        // if minIndex ==-1 OR 
-        // if tagIndex != -1 AND tagIndex < minIndex;
-        // the set minIndex = tag
-        // if minIndex = -1 return ""
+
         if(minIndex == -1 || (tagIndex !=-1 && tagIndex < minIndex)){
             minIndex = tagIndex;
         }
@@ -76,24 +59,7 @@ public class Part4 {
         
     }
 
-/*
-    public void testRes () {
-        FileResource fr = new FileResource();
-        String contents = fr.asString();
-        
-        System.out.println("        The content as string      ");
-        System.out.println("___________________________________");
-        System.out.println(contents);
-        System.out.println("___________________________________");
-        
-        String dex = findGene(contents.toUpperCase(), 0);
-        System.out.println(dex);
 
-        System.out.println("completed!!!");
-        
-        
-    }
- */
     public void printAllGenes(String dna){
         // set startIndex  to 0
         int startIndex = 0;
@@ -119,26 +85,70 @@ public class Part4 {
       
     }
     
-
-    
-    public void testing(){
-        //String a = "cccatggggtttaaataataataggagagagagagagagttt";
-                  //   ^ ^     ^ ^ ^ ^
-        // potential = atggggtttaaataa
-        //String ap = "atggggtttaaataataatag";
-        //String non = "usjaoanwiamaan";
-        //String d = "xxxyyyzzzTAAxxxyyyzzzTAAxx";
-        //int dex = findStopCodon(d,0, "TAA");
-        //if(dex != 8){System.out.println("error occured. output is " + dex);}
+    public StorageResource getAllGenes(String dna){
+        // create empty storage res.
+        StorageResource geneList = new StorageResource();
+        int startIndex = 0;
+        while(true){
+            String currentGene = findGene(dna, startIndex);
+            
+            if(currentGene.isEmpty()){break;}
+            
+            // add to the list
+            geneList.add(currentGene);
+            
+            startIndex = dna.indexOf(currentGene,startIndex) + 
+                                        currentGene.length();
+        }
         
-        String a = "atgatgxxxtaaatgtgaatgyyytaatgasjkatg";
-        //String dex = findGene(a.toUpperCase(),0);
-        printAllGenes(a.toUpperCase());
-        //System.out.println(dex);
+        return geneList;
+        
+    }
+    
+    public int allCal(String input, String chr){
+        int index = input.indexOf(chr);
+        int count = 0;
+        while(true){
+            if(index == -1 || index > input.length() - chr.length()){break;}
+            index = input.indexOf(chr,index+chr.length());
+            count++;
+        }
+        return count;
+    }
+    
+    public double cgRatio(String dna){ // its already a DNA
+        int Num = allCal(dna, "C") + allCal(dna, "G");
+        
+        return (double)Num/dna.length();
+
+    }
+    
+    public int countCTG(String dna){
+        String CTG = "CTG";
+        return allCal(dna, CTG);
+    }
+    
+    public void Likeplay(){
+        System.out.println(cgRatio("ATGCCATAG"));
+    }
+ 
+    public void testing(){
+        String a = "atgatgxcctaaatgtgaatgyyytaatgasjkatg";
+        String b = "ATGCCACTGTAG";
+        //printAllGenes(a.toUpperCase());
+        //StorageResource genes = getAllGenes(a.toUpperCase());
+        StorageResource genes = getAllGenes(b);        
+        for(String i: genes.data()){
+            System.out.println("DNA strand = " + i);
+            System.out.println("cgRatio = " + cgRatio(i));
+            System.out.println("Number of CTG = " + countCTG(i));
+        }
+        //cgRatio()
+        genes.clear();
+        
 
         System.out.println("completed!!!");
     }
-
 }
 
 
