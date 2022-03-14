@@ -18,14 +18,12 @@ public class ForTest {
         
         for(CSVRecord record: parser){
             String listOfCountries = record.get("Country");
-            if(listOfCountries .contains(country)){
+            if(listOfCountries.contains(country)){
                 String exports = record.get("Exports");
                 String value  = record.get("Value (dollars)");
                 System.out.println(country + ": " + exports + ": " + value );
             }
-            else{
-                System.out.println("NOT FOUND");
-            }
+            
         }
     }
     
@@ -69,16 +67,16 @@ public class ForTest {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
         
-        //String country = "Germany";
+        //String country = "Nauru";
         //countryInfo(parser, country);
         
-        //listExportersTwoProducts(parser,"cotton", "coffee");
+        listExportersTwoProducts(parser,"gold", "diamond");
         
-        //String exportItem = "coffee";
+        //String exportItem = "sugar";
         //numberOfExporters(parser, exportItem);
         
-        String amount = "$99,999,999,999";
-        bigExporters(parser, amount);
+        //String amount = "$999,999,999,999";
+        //bigExporters(parser, amount);
     }
 
 }
